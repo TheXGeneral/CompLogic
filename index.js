@@ -253,7 +253,7 @@ function add_header(_header,variables){
     }
     document.getElementById('truth_table').style.position="absolute";
     document.getElementById('truth_table').style.left="50%";
-    document.getElementById('truth_table').style.transform="translate(-60%)";
+    document.getElementById('truth_table').style.transform="translate(-50%)";
 }
 function submit(){
     var _input_data=document.getElementById("input_data").value
@@ -331,6 +331,27 @@ function get_paranthesis(_input_data){
 function get_functions(_operations){
     var nr_of_functions=0;
     var functions=[];
+    //checking for ⌐
+for(var i=_operations.length-1;i>=0;i--){
+    for(var j=0;j<_operations[i].length;j++){
+        if(_operations[i][j]=='⌐'){
+            var right_opperand="";
+            var right_aux=j+1;
+            while(!check_for_operation_sign(_operations[i][right_aux]) && right_aux<_operations[i].length){
+                right_opperand+=_operations[i][right_aux];
+                right_aux++;
+            }
+            functions.push({'function':not, 'opperands':[right_opperand,-1],'text':'⌐'+right_opperand});
+            nr_of_functions++;
+            right_aux--;
+            _operations[i]=setCharAt(_operations[i],right_aux,'&'+(nr_of_functions-1));
+            for(k=right_aux-1;k>=j;k--){
+                _operations[i]=setCharAt(_operations[i],j,'');
+            }
+            j= j- (right_aux-j+1)+nr_of_digits(nr_of_functions)
+        }
+    }
+}
     ///checking for ^ ⌄ ↑ ↓
    for(var i=_operations.length-1;i>=0;i--){
         for(var j=0;j<_operations[i].length;j++){
@@ -408,27 +429,6 @@ function get_functions(_operations){
                 _operations[i]=setCharAt(_operations[i],left_aux,'');
             }
             j= j- (right_aux-left_aux+1)+nr_of_digits(nr_of_functions)
-        }
-    }
-}
-//checking for ⌐
-for(var i=_operations.length-1;i>=0;i--){
-    for(var j=0;j<_operations[i].length;j++){
-        if(_operations[i][j]=='⌐'){
-            var right_opperand="";
-            var right_aux=j+1;
-            while(!check_for_operation_sign(_operations[i][right_aux]) && right_aux<_operations[i].length){
-                right_opperand+=_operations[i][right_aux];
-                right_aux++;
-            }
-            functions.push({'function':not, 'opperands':[right_opperand,-1],'text':'⌐'+right_opperand});
-            nr_of_functions++;
-            right_aux--;
-            _operations[i]=setCharAt(_operations[i],right_aux,'&'+(nr_of_functions-1));
-            for(k=right_aux-1;k>=j;k--){
-                _operations[i]=setCharAt(_operations[i],j,'');
-            }
-            j= j- (right_aux-j+1)+nr_of_digits(nr_of_functions)
         }
     }
 }
