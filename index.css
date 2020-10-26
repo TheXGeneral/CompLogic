@@ -1,0 +1,26 @@
+.input_div{
+    position:absolute;
+    left:50%;
+    transform: translate(-50%);
+}
+textarea{
+   width:400px;
+   padding: 30px;
+   border:1px solid red;
+   resize: none;
+   text-align: center;
+}
+button{
+    text-align: center;
+    width:462px;
+    padding:20px
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td{
+    border:1px solid black;
+    padding:10px;
+    text-align: center;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <link rel="stylesheet" type="text/css" href="./index.css">
+    </head>
+    <body style="padding:30px">
+        <p style="position:absolute;left:-500px" id="aux_elem"></p>
+        <div class="input_div">
+            <p>Input an expression</p>
+            <p>Opperations: (you can click on them to copy the sign)</p>
+            <table id="myTable">
+                <tr>
+                  <td onclick="copy_text('⌐')">not: ⌐</td>
+                  <td onclick="copy_text('^')">conjunction: ^</td>
+                  <td onclick="copy_text('⌄')">disjunction: ⌄</td>
+                  <td onclick="copy_text('→')">implication: →</td>
+                </tr>
+                <tr>
+                  <td onclick="copy_text('↔')">equivalence: ↔</td>
+                  <td onclick="copy_text('↑')">nand: ↑</td>
+                  <td onclick="copy_text('↓')">nor: ↓</td>
+                  <td onclick="copy_text('⊕')">xor: ⊕</td>
+                </tr>
+              </table>
+            <textarea placeholder="Expression"  rows="1" id="input_data"></textarea></br>
+            <button onclick="submit()">Submit</button>
+        </div>
+        <div style="width:100%;position: absolute;top: 400px;" id="truth">
+            <table id='truth_table' class="truth_table">
+
+            </table>
+        </div>
+    </body>
+    <script src="./index.js"></script>
+</html>
+
